@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/game_provider.dart';
 import 'screens/game_screen.dart';
+import 'screens/bidding_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,8 +13,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => GameProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => GameProvider()),
+      ],
       child: MaterialApp(
         title: 'Bridge Card Game',
         debugShowCheckedModeBanner: false,
@@ -24,7 +27,7 @@ class MyApp extends StatelessWidget {
             primary: Colors.green[800]!,
             secondary: Colors.green[600]!,
           ),
-          useMaterial3: false, // Disable Material 3 for better compatibility
+          useMaterial3: false,
           appBarTheme: AppBarTheme(
             color: Colors.green[800],
             iconTheme: const IconThemeData(color: Colors.white),
@@ -35,9 +38,12 @@ class MyApp extends StatelessWidget {
             ),
             elevation: 0,
           ),
-          // Use the default card theme to avoid type issues
         ),
-        home: const GameScreen(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const GameScreen(),
+          '/bidding': (context) => const BiddingScreen(),
+        },
       ),
     );
   }

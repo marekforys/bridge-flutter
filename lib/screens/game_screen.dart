@@ -14,8 +14,14 @@ class GameScreen extends StatelessWidget {
         title: const Text('Bridge Game'),
         actions: [
           IconButton(
+            icon: const Icon(Icons.gavel),
+            onPressed: () => Navigator.pushNamed(context, '/bidding'),
+            tooltip: 'Practice Bidding',
+          ),
+          IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: () => context.read<GameProvider>().newGame(),
+            tooltip: 'New Game',
           ),
         ],
       ),

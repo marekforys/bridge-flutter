@@ -15,6 +15,8 @@ class GameProvider extends ChangeNotifier {
   PlayerPosition? get dealer => _gameModel.dealer;
 
   // Game actions
+  GameModel get gameModel => _gameModel;
+
   void newGame() {
     _gameModel.newGame();
     notifyListeners();
